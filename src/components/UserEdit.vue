@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import {eventBus} from "../main";
 export default {
   props: ["name", "address", "phone", "hasDog"],
   data() {
@@ -31,6 +32,8 @@ export default {
   methods: {
       changeUser(){
           this.$emit('child', this.user)
+        //   eventBus.$emit("userWasEdited", new Date())
+        eventBus.userWasEdited(new Date())
       }
   }
 };
@@ -39,4 +42,6 @@ export default {
 // 컴포넌트가 created 됐을 때, UserEdit 컴포넌트 내에 있는 user 객체에 재할당 시켜줌.
 // 부모컴포넌트를 통해 자식컴포넌트로 props를 이용해 name이라는 값을 전달해줌. name을 자식컴포넌트 자체의 user에 넣었다. 그리고 user.name을 연결함.
 // 때문에, 자식컴포넌트에 아무리 수정을 해도 부모값은 아니기 때문에 에러메세지가 뜨지 않음.
+
+// 자식 컴포넌트에서 수정한 값이 부모로 전달돼서 실제 부모를 변경했고 변경된 값이 userdetail이라는 자식 컴포넌트로 전달이 돼서 안의 값들을 바꿈.
 </script>

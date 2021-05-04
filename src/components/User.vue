@@ -2,6 +2,8 @@
   <div class="blue lighten-3 pa-3">
     <h1>User component</h1>
     <p>name: vuejs</p>
+    <p>{{getDateAndTime(createdAt)}}</p>
+    {{ helloToMixin }}
     <hr />
     <v-layout row wrap>
       <v-flex xs12 sm6>
@@ -28,6 +30,7 @@
 <script>
 import UserDetail from "./UserDetail.vue";
 import UserEdit from "./UserEdit.vue";
+import {dateFormat} from "../mixins/dateFormat"
 
 export default {
   name: "User",
@@ -41,7 +44,16 @@ export default {
       address: "seoul",
       phone: "1234-5678",
       hasDog: true,
+      createdAt: null
     };
+  },
+  computed: {
+      helloToMixin(){
+          return this.mixinData + "안녕하세요"
+      }
+  },
+  created(){
+      this.createdAt = new Date()
   },
   methods: {
       parents(user){
@@ -50,8 +62,17 @@ export default {
           this.phone = user.phone
           this.hasDog = user.hasDog
           console.log('parent got it')
-      }
-  }
+      },
+    //   getDateAndTime(date){
+    //       let hour = date.getHours()
+    //       let minutes = date.getMinutes()
+    //       let fullDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+    //       return `${fullDate} ${hour}:${minutes}`
+    //   }
+  },
+  mixins: [
+      dateFormat
+  ]
 };
 
 // props는 자식컴포넌트에 적는 것. 보내고자 하는 데이터 바인딩을 부모에서 하는 것.
