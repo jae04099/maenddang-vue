@@ -38,7 +38,7 @@
 </template>
 <script>
 import { eventBus } from "../main";
-import {dateFormat} from "../mixins/dateFormat"
+import { dateFormat } from "../mixins/dateFormat";
 
 export default {
   data() {
@@ -71,9 +71,7 @@ export default {
     //   }
     // },
   },
-  mixins: [
-      dateFormat
-  ]
+  mixins: [dateFormat],
 };
 
 // 부모 컴포넌트에서 이미 값이 상속 됐기 때문에 자식 프롭에서는 어떤 것도 넣으면 안됨. 오직, 타입만 지정해준다.
